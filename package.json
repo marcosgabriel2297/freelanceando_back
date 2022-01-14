@@ -1,0 +1,19 @@
+{
+  "name": "freelanceando_back",
+  "version": "1.0.0",
+  "description": "Backend for the project *freelanceando*",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcosgabriel2297/freelanceando_back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcosgabriel2297/freelanceando_back/issues"
+  },
+  "homepage": "https://github.com/marcosgabriel2297/freelanceando_back#readme"
+}
