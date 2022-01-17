@@ -4,11 +4,21 @@ const app = express();
 const PostModel = require('../../models/Post');
 
 /*eslint-disable */
-app.post('/test', async (req, res) => {
-    const postModel = new PostModel('Juan carlos');
+app.post('/post', async (req, res) => {
+/* eslint-enable */
 
-    console.log('asdasdas', postModel.insert());
-	res.json('todo ok');
+	const { body } = req;
+
+	const post = new PostModel(body);
+
+	let postSaved;
+	try {
+		postSaved = await post.insert();
+	} catch(error) {
+		return res.status(400).json(error.message);
+	}
+
+	res.json({ insertedId: postSaved.insertedId });
 });
 
 module.exports = app;

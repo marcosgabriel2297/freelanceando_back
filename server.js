@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 
 app.use(require('./src/routes/routes'));
 
+/* eslint-disable */
 app.listen(process.env.PORT, () => {
 	console.log('escuchando el puerto ', process.env.PORT);
 });
+/* eslint-enable */
