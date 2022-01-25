@@ -10,10 +10,11 @@ class Mongo {
 		try {
 			const client = await MongoClient.connect(this.url);
 			const db = await client.db(this.dbName);
-			console.log('connect to the database');
+			console.log(db);
+
 			return db;
 		} catch(error) {
-			console.log(error);
+			return error.toString();
 		}
 	}
 }

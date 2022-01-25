@@ -9,10 +9,8 @@ const route = async (req, res) => {
 	try {
 		postGetted = await PostModel.get();
 	} catch(err) {
-		return res.status(404).json('Post not found');
+		return res.status(404).json('Posts not found');
 	}
-
-	console.table(postGetted[0]);
 
 	return res.status(200).json(postGetted);
 };

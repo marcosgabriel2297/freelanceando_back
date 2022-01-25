@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --exit -R nyan --recursive tests/",
-    "demon": "nodemon server.js"
+    "demon": "nodemon server.js",
+    "test-watch": "npm test -- -w",
+    "coverage": "nyc npm test"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
-    "lint-staged": "^12.1.7"
+    "lint-staged": "^12.1.7",
+    "nyc": "^15.1.0"
   }
 }

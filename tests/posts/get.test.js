@@ -34,9 +34,11 @@ const fakePosts = [
 
 describe('Api get Test', () => {
 
+	afterEach(() => sandbox.restore());
+
 	context('When you get the posts', () => {
 
-		it('Should get a status 200 and an array with the posts', async () => {
+		it('Should 200 and an array with the posts', async () => {
 
 			sandbox.stub(PostModel, 'get').resolves(fakePosts);
 
@@ -47,6 +49,39 @@ describe('Api get Test', () => {
 
 			assert.deepStrictEqual(res.status, 200);
 			assert.deepStrictEqual(res.json, fakePosts);
+			sandbox.assert.calledOnceWithExactly(PostModel.get);
+		});
+
+		it('Should return 200 if an emty array is found', async () => {
+
+			sandbox.stub(PostModel, 'get').resolves([]);
+
+			const req = mockRequest();
+			const res = mockResponse();
+
+			await route(req, res);
+
+			assert.deepStrictEqual(res.status, 200);
+			assert.deepStrictEqual(res.json, []);
+
+			sandbox.assert.calledOnceWithExactly(PostModel.get);
+		});
+	});
+
+	context('When an error occurs', () => {
+
+		it('should return 404 if there is an error getting the posts', async () => {
+
+			sandbox.stub(PostModel, 'get').rejects(new Error('Some error in the database'));
+
+			const req = mockRequest();
+			const res = mockResponse();
+
+			await route(req, res);
+
+			assert.deepStrictEqual(res.status, 404);
+			assert.deepStrictEqual(res.json, 'Posts not found');
+
 			sandbox.assert.calledOnceWithExactly(PostModel.get);
 		});
 	});
