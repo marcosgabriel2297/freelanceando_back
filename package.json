@@ -27,6 +27,7 @@
     "express-test-stubs": "^2.0.0",
     "expressmocks": "^1.0.0",
     "http": "^0.0.1-security",
+    "joi": "^17.5.0",
     "mocha": "^9.1.4",
     "mongo": "^0.1.0",
     "mongodb": "^4.3.0",
