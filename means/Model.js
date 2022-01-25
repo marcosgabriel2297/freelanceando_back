@@ -3,21 +3,31 @@ const Mongo = require('../database/Mongo');
 const mongo = new Mongo();
 module.exports = class Model {
 
-	collection() {
+	static get collection() {
 		return 'default';
-	}
-
-	connectDb() {
-		return mongo.connect();
 	}
 
 	async insert() {
 
-		const db = await this.connectDb();
+		const db = await mongo.connect();
 		const currentCollection = this.collection();
 
 		try {
 			return db.collection(currentCollection).insertOne(this);
+		} catch(error) {
+			return error.message;
+		}
+	}
+
+	static async get() {
+
+		const db = await mongo.connect();
+		const currentCollection = this.collection;
+
+		try {
+			return db.collection(currentCollection)
+				.find({})
+				.toArray();
 		} catch(error) {
 			return error.message;
 		}

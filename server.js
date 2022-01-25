@@ -18,3 +18,5 @@ app.listen(process.env.PORT, () => {
 	console.log('escuchando el puerto ', process.env.PORT);
 });
 /* eslint-enable */
+
+module.exports = app;

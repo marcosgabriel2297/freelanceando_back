@@ -15,7 +15,7 @@ class Post extends Model {
 		this.searchedTechnologies = searchedTechnologies;
 	}
 
-	collection() {
+	static get collection() {
 		return 'posts';
 	}
 }

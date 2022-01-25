@@ -3,9 +3,7 @@ const express = require('express');
 const app = express();
 const PostModel = require('../../models/Post');
 
-/*eslint-disable */
 app.post('/post', async (req, res) => {
-/* eslint-enable */
 
 	const { body } = req;
 

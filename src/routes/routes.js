@@ -1,5 +1,7 @@
-const publics = require('./posts/post');
+const post = require('./posts/post');
+const { app: getPost } = require('./posts/get');
 
 module.exports = [
-	publics
+	getPost,
+	post
 ];
