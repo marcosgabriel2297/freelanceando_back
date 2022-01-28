@@ -1,0 +1,17 @@
+{
+  "include":[
+    "src/"
+  ],
+  "exclude": [
+    "means/",
+    "src/routes/routes.js"
+  ],
+  "extension": [
+    ".js"
+  ],
+  "cache": true,
+  "all": true,
+  "default-excludes": true,
+  "check-coverage": true,
+  "skip-full": true
+}

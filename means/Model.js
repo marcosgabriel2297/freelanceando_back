@@ -21,7 +21,6 @@ module.exports = class Model {
 
 	static async get() {
 
-		console.log('Me ejecute!');
 		const db = await mongo.connect();
 		const currentCollection = this.collection;
 
