@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const validateSchema = require('../validateSchema');
 
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
 
 	const schema = Joi.object({
 		title: Joi.string().required(),
@@ -14,12 +14,12 @@ module.exports = (req, res) => {
 			quantity: Joi.number().required()
 		}).required(),
 		imagen: Joi.string().required(),
-		searchedTechnologies: Joi.array().items(Joi.string).required(),
+		searchedTechnologies: Joi.array().items(Joi.string()).required(),
 		contact: Joi.object({
 			email: Joi.string().email().required(),
 			phone: Joi.string().pattern(/^\d*$/).required()
 		}).required()
 	});
 
-	validateSchema(req, res, schema);
+	validateSchema(req, res, next, schema);
 };
