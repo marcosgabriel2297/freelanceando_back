@@ -4,7 +4,8 @@
   ],
   "exclude": [
     "means/",
-    "src/routes/routes.js"
+    "src/routes/routes.js",
+    "src/schemas/"
   ],
   "extension": [
     ".js"

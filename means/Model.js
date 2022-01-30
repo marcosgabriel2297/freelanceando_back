@@ -1,19 +1,23 @@
 const Mongo = require('../database/Mongo');
 
 const mongo = new Mongo();
+
 module.exports = class Model {
 
 	static get collection() {
 		return 'default';
 	}
 
+	get collection() {
+		return 'default';
+	}
+
 	async insert() {
 
 		const db = await mongo.connect();
-		const currentCollection = this.collection();
 
 		try {
-			return db.collection(currentCollection).insertOne(this);
+			return db.collection(this.collection).insertOne(this);
 		} catch(error) {
 			return error.message;
 		}
@@ -22,12 +26,13 @@ module.exports = class Model {
 	static async get() {
 
 		const db = await mongo.connect();
-		const currentCollection = this.collection;
 
 		try {
-			return db.collection(currentCollection)
-				.find({})
-				.toArray();
+
+			const getData = await db.collection(this.collection).find({}).toArray();
+
+			const instantiatedModel = getData.map(obj => this.instantiate(obj));
+			return instantiatedModel;
 		} catch(error) {
 			return error.message;
 		}

@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PostModel = require('../../models/Post');
 
-const route = async (req, res) => {
+const handler = async (req, res) => {
 
 	let postGetted;
 	try {
@@ -15,6 +15,6 @@ const route = async (req, res) => {
 	return res.status(200).json(postGetted);
 };
 
-app.get('/post', route);
+app.get('/post', handler);
 
-module.exports = { app, route };
+module.exports = { app, handler };

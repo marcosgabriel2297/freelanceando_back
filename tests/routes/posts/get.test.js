@@ -1,9 +1,9 @@
 const sandbox = require('sinon').createSandbox();
 const assert = require('assert');
-const { mockResponse, mockRequest } = require('../aux');
+const { mockResponse, mockRequest } = require('../../aux');
 
-const { route } = require('../../src/routes/posts/get');
-const PostModel = require('../../src/models/Post');
+const { handler } = require('../../../src/routes/posts/get');
+const PostModel = require('../../../src/models/Post');
 
 const fakePosts = [
 	{
@@ -36,7 +36,7 @@ describe('Api get Test', () => {
 
 	afterEach(() => sandbox.restore());
 
-	context('When you get the posts', () => {
+	context('When get the posts', () => {
 
 		it('Should 200 and an array with the posts', async () => {
 
@@ -45,7 +45,7 @@ describe('Api get Test', () => {
 			const req = mockRequest();
 			const res = mockResponse();
 
-			await route(req, res);
+			await handler(req, res);
 
 			assert.deepStrictEqual(res.status, 200);
 			assert.deepStrictEqual(res.json, fakePosts);
@@ -59,7 +59,7 @@ describe('Api get Test', () => {
 			const req = mockRequest();
 			const res = mockResponse();
 
-			await route(req, res);
+			await handler(req, res);
 
 			assert.deepStrictEqual(res.status, 200);
 			assert.deepStrictEqual(res.json, []);
@@ -77,7 +77,7 @@ describe('Api get Test', () => {
 			const req = mockRequest();
 			const res = mockResponse();
 
-			await route(req, res);
+			await handler(req, res);
 
 			assert.deepStrictEqual(res.status, 404);
 			assert.deepStrictEqual(res.json, 'Posts not found');

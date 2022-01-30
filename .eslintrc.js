@@ -67,7 +67,7 @@ module.exports = {
 		}],
 
 		'newline-per-chained-call': ['error', {
-			ignoreChainWithDepth: 2
+			ignoreChainWithDepth: 4
 		}],
 
 		'no-param-reassign': 0,

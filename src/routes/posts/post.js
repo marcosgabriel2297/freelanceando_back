@@ -3,7 +3,9 @@ const express = require('express');
 const app = express();
 const PostModel = require('../../models/Post');
 
-app.post('/post', async (req, res) => {
+// const schemaPost = require('../../schemas/posts/api');
+
+const handler = async (req, res) => {
 
 	const { body } = req;
 
@@ -17,6 +19,8 @@ app.post('/post', async (req, res) => {
 	}
 
 	res.json({ insertedId: postSaved.insertedId });
-});
+};
 
-module.exports = app;
+app.post('/post', handler);
+
+module.exports = { app, handler };
