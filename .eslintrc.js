@@ -94,7 +94,7 @@ module.exports = {
 			}
 		}],
 
-		'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
+		'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
 		'function-paren-newline': 0,
 		'no-await-in-loop': 0,
 

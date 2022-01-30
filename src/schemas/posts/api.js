@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const validateSchema = require('../validateSchema');
 
-module.exports = (req, res, next) => {
+module.exports = body => {
 
 	const schema = Joi.object({
 		title: Joi.string().required(),
@@ -21,5 +21,5 @@ module.exports = (req, res, next) => {
 		}).required()
 	});
 
-	validateSchema(req, res, next, schema);
+	return validateSchema(schema, body);
 };

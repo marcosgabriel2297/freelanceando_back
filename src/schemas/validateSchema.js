@@ -1,8 +1,6 @@
-module.exports = async (req, res, next, schema) => {
-	try {
-		await schema.validateAsync(req.body);
-		next();
-	} catch(e) {
-		return res.status(400).json(e.message);
-	}
+module.exports = async (schema, body) => {
+
+	const value = schema.validate(body);
+
+	return value.error ? { error: value.error.message } : {};
 };

@@ -7,9 +7,12 @@ const schemaPost = require('../../schemas/posts/api');
 
 const handler = async (req, res) => {
 
-	const { body } = req;
+	const validation = await schemaPost(req.body);
 
-	const post = new PostModel(body);
+	if(validation.error)
+		return res.status(400).json(validation);
+
+	const post = new PostModel(req.body);
 
 	let postSaved;
 	try {
@@ -18,9 +21,9 @@ const handler = async (req, res) => {
 		return res.status(400).json(error.message);
 	}
 
-	res.json({ insertedId: postSaved.insertedId });
+	res.status(200).json({ insertedId: postSaved.insertedId });
 };
 
-app.post('/post', schemaPost, handler);
+app.post('/post', handler);
 
 module.exports = { app, handler };
